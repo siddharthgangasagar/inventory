@@ -1,0 +1,138 @@
+<div class="user-dashboard-container">
+  <div class="dashboard-header">
+    <div class="welcome-section">
+      <h1>👋 Welcome back, {{ currentUser?.firstName }}!</h1>
+      <p>Manage your account and track your orders</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn secondary" (click)="updateProfile()">Update Profile</button>
+      <button class="btn logout-btn" (click)="logout()">Logout</button>
+    </div>
+  </div>
+
+  <div class="dashboard-content">
+    <!-- User Stats -->
+    <div class="stats-section">
+      <div class="stat-card">
+        <div class="stat-icon">📦</div>
+        <div class="stat-info">
+          <h3>{{ userStats.ordersCount }}</h3>
+          <p>Total Orders</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">❤️</div>
+        <div class="stat-info">
+          <h3>{{ userStats.wishlistCount }}</h3>
+          <p>Wishlist Items</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">🛒</div>
+        <div class="stat-info">
+          <h3>{{ userStats.cartCount }}</h3>
+          <p>Cart Items</p>
+        </div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-icon">📊</div>
+        <div class="stat-info">
+          <h3>{{ userStats.recentActivity }}</h3>
+          <p>Recent Activity</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Actions -->
+    <div class="quick-actions">
+      <h2>Quick Actions</h2>
+      <div class="actions-grid">
+        <button class="action-card" (click)="viewOrders()">
+          <div class="action-icon">📋</div>
+          <h3>My Orders</h3>
+          <p>View and track your orders</p>
+        </button>
+        <button class="action-card" (click)="viewWishlist()">
+          <div class="action-icon">💝</div>
+          <h3>Wishlist</h3>
+          <p>Manage your saved items</p>
+        </button>
+        <button class="action-card" (click)="viewCart()">
+          <div class="action-icon">🛍️</div>
+          <h3>Shopping Cart</h3>
+          <p>Review items in your cart</p>
+        </button>
+        <button class="action-card" routerLink="/shop">
+          <div class="action-icon">🏪</div>
+          <h3>Continue Shopping</h3>
+          <p>Browse our products</p>
+        </button>
+      </div>
+    </div>
+
+    <!-- Recent Orders -->
+    <div class="recent-orders">
+      <h2>Recent Orders</h2>
+      <div class="orders-table" *ngIf="recentOrders.length > 0; else noOrders">
+        <table>
+          <thead>
+            <tr>
+              <th>Order ID</th>
+              <th>Date</th>
+              <th>Total</th>
+              <th>Status</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let order of recentOrders">
+              <td>{{ order.id }}</td>
+              <td>{{ order.date | date:'short' }}</td>
+              <td>${{ order.total }}</td>
+              <td>
+                <span class="status-badge" [class]="order.status.toLowerCase()">
+                  {{ order.status }}
+                </span>
+              </td>
+              <td>
+                <button class="btn-small">View Details</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      
+      <ng-template #noOrders>
+        <div class="no-orders">
+          <p>No orders yet. Start shopping to see your orders here!</p>
+          <button class="btn primary" routerLink="/shop">Start Shopping</button>
+        </div>
+      </ng-template>
+    </div>
+
+    <!-- User Profile Summary -->
+    <div class="profile-summary" *ngIf="currentUser">
+      <h2>Profile Information</h2>
+      <div class="profile-card">
+        <div class="profile-info">
+          <div class="info-row">
+            <strong>Name:</strong> {{ currentUser.firstName }} {{ currentUser.lastName }}
+          </div>
+          <div class="info-row">
+            <strong>Email:</strong> {{ currentUser.email }}
+          </div>
+          <div class="info-row">
+            <strong>Phone:</strong> {{ currentUser.phone || 'Not provided' }}
+          </div>
+          <div class="info-row">
+            <strong>Company:</strong> {{ currentUser.companyName || 'Not provided' }}
+          </div>
+          <div class="info-row">
+            <strong>Member Since:</strong> {{ currentUser.createdAt | date:'mediumDate' }}
+          </div>
+        </div>
+        <button class="btn primary" (click)="updateProfile()">Update Profile</button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { Router } from '@angular/router';
 import { UserService, UserData } from '../../services/user.service';
 
 @Component({
@@ -13,14 +14,33 @@ export class AdminComponent implements OnInit {
   users: UserData[] = [];
   selectedUser: UserData | null = null;
 
-  constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
+    // Check if user is admin
+    if (!this.userService.isAdmin()) {
+      alert('Access denied. Admin privileges required.');
+      this.router.navigate(['/login']);
+      return;
+    }
+    
     this.loadUsers();
   }
 
   loadUsers() {
-    this.users = this.userService.getAllUsers();
+    // Get users from database
+    this.userService.databaseService.getAllUsers().subscribe({
+      next: (users) => {
+        this.users = users;
+      },
+      error: (error) => {
+        console.error('Error loading users:', error);
+        this.users = [];
+      }
+    });
   }
 
   get activeUsersCount(): number {
@@ -37,6 +57,11 @@ export class AdminComponent implements OnInit {
 
   closeModal() {
     this.selectedUser = null;
+  }
+
+  logout() {
+    this.userService.logoutUser();
+    this.router.navigate(['/login']);
   }
 
   async deleteUser(userId: string) {

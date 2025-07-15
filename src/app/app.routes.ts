@@ -9,6 +9,7 @@ import { WishlistComponent } from './components/wishlist/wishlist.component';
 import { CartComponent } from './components/cart/cart.component';
 import { AdminComponent } from './components/admin/admin.component';
 import { DatabaseConfigComponent } from './components/database-config/database-config.component';
+import { UserDashboardComponent } from './components/user-dashboard/user-dashboard.component';
 
 export const routes: Routes = [
   { path: '', component: HomeComponent },
@@ -22,5 +23,6 @@ export const routes: Routes = [
   { path: 'cart', component: CartComponent },
   { path: 'admin', component: AdminComponent },
   { path: 'database-config', component: DatabaseConfigComponent },
+  { path: 'user-dashboard', component: UserDashboardComponent },
   { path: '**', redirectTo: '/home' }
 ];

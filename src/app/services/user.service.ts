@@ -23,6 +23,7 @@ export interface UserData {
   newsletter: boolean;
   createdAt?: Date;
   isActive?: boolean;
+  role?: 'admin' | 'user';
 }
 
 @Injectable({
@@ -40,13 +41,21 @@ export class UserService {
   // Register new user using database service
   registerUser(userData: UserData): Promise<boolean> {
     return new Promise((resolve) => {
+      // Set default role as 'user' if not specified
+      const userWithRole = { 
+        ...userData, 
+        role: userData.role || 'user',
+        id: this.generateUserId(),
+        createdAt: new Date(),
+        isActive: true
+      };
+      
       this.databaseService.registerUser(userData).subscribe({
         next: (success) => {
           if (success) {
-            // Set as current user after successful registration
-            const newUser = { ...userData, id: this.generateUserId(), createdAt: new Date(), isActive: true };
-            this.currentUserSubject.next(newUser);
-            console.log('User registered successfully:', newUser);
+            this.currentUserSubject.next(userWithRole);
+            this.saveCurrentUser(userWithRole);
+            console.log('User registered successfully:', userWithRole);
           }
           resolve(success);
         },
@@ -139,6 +148,7 @@ export class UserService {
         next: (user) => {
           if (user && user.password === password) {
             this.currentUserSubject.next(user);
+            this.saveCurrentUser(user);
             resolve(user);
           } else {
             resolve(null);
@@ -161,6 +171,24 @@ export class UserService {
   // Get current user
   getCurrentUser(): UserData | null {
     return this.currentUserSubject.value;
+  }
+
+  // Check if current user is admin
+  isAdmin(): boolean {
+    const user = this.getCurrentUser();
+    return user?.role === 'admin';
+  }
+
+  // Check if current user is regular user
+  isUser(): boolean {
+    const user = this.getCurrentUser();
+    return user?.role === 'user';
+  }
+
+  // Get user role
+  getUserRole(): 'admin' | 'user' | null {
+    const user = this.getCurrentUser();
+    return user?.role || null;
   }
 
   // Check if user exists in database
