@@ -25,7 +25,6 @@ export class UserDashboardComponent implements OnInit {
     { id: 'ORD-003', date: '2024-01-05', total: 89.99, status: 'Processing' }
   ];
 
-  constructor(private userService: UserService) {}
   constructor(
     private userService: UserService,
     private router: Router
