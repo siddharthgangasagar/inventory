@@ -1,0 +1,131 @@
+<div class="register-container">
+  <div class="register-box">
+    <h2>Create New Account</h2>
+    <p>Join our inventory management platform</p>
+    
+    <form (ngSubmit)="register()" #registerForm="ngForm" autocomplete="off">
+      <div class="form-section">
+        <h3>Personal Information</h3>
+        
+        <div class="form-row">
+          <div class="input-box">
+            <label>First Name *</label>
+            <input type="text" [(ngModel)]="userData.firstName" name="firstName" required />
+          </div>
+          <div class="input-box">
+            <label>Last Name *</label>
+            <input type="text" [(ngModel)]="userData.lastName" name="lastName" required />
+          </div>
+        </div>
+        
+        <div class="input-box">
+          <label>Email Address *</label>
+          <input type="email" [(ngModel)]="userData.email" name="email" required autocomplete="off" />
+        </div>
+        
+        <div class="input-box">
+          <label>Phone Number</label>
+          <input type="tel" [(ngModel)]="userData.phone" name="phone" />
+        </div>
+        
+        <div class="input-box">
+          <label>Date of Birth</label>
+          <input type="date" [(ngModel)]="userData.dateOfBirth" name="dateOfBirth" />
+        </div>
+      </div>
+      
+      <div class="form-section">
+        <h3>Account Security</h3>
+        
+        <div class="input-box">
+          <label>Password *</label>
+          <div class="password-container">
+            <input 
+              [type]="showPassword ? 'text' : 'password'" 
+              [(ngModel)]="userData.password" 
+              name="password" 
+              required 
+              minlength="8" 
+              autocomplete="new-password"
+            />
+            <button 
+              type="button" 
+              class="password-toggle" 
+              (click)="togglePassword()"
+              [title]="showPassword ? 'Hide password' : 'Show password'"
+            >
+              {{ showPassword ? '👁️' : '👁️‍🗨️' }}
+            </button>
+          </div>
+          <small>Password must be at least 8 characters long</small>
+        </div>
+        
+        <div class="input-box">
+          <label>Confirm Password *</label>
+          <div class="password-container">
+            <input 
+              [type]="showConfirmPassword ? 'text' : 'password'" 
+              [(ngModel)]="userData.confirmPassword" 
+              name="confirmPassword" 
+              required 
+              autocomplete="new-password"
+            />
+            <button 
+              type="button" 
+              class="password-toggle" 
+              (click)="toggleConfirmPassword()"
+              [title]="showConfirmPassword ? 'Hide password' : 'Show password'"
+            >
+              {{ showConfirmPassword ? '👁️' : '👁️‍🗨️' }}
+            </button>
+          </div>
+        </div>
+      </div>
+      
+      <div class="form-section">
+        <h3>Business Information</h3>
+        
+        <div class="input-box">
+          <label>Company Name</label>
+          <input type="text" [(ngModel)]="userData.companyName" name="companyName" />
+        </div>
+        
+        <div class="input-box">
+          <label>Job Title</label>
+          <input type="text" [(ngModel)]="userData.jobTitle" name="jobTitle" />
+        </div>
+        
+        <div class="input-box">
+          <label>Business Type</label>
+          <select [(ngModel)]="userData.businessType" name="businessType">
+            <option value="">Select Business Type</option>
+            <option value="retail">Retail</option>
+            <option value="wholesale">Wholesale</option>
+            <option value="manufacturing">Manufacturing</option>
+            <option value="ecommerce">E-commerce</option>
+            <option value="other">Other</option>
+          </select>
+        </div>
+      </div>
+      
+      <div class="form-section">
+        <div class="checkbox-box">
+          <input type="checkbox" [(ngModel)]="userData.agreeToTerms" name="agreeToTerms" required />
+          <label>I agree to the <a href="#" (click)="showTerms($event)">Terms of Service</a> and <a href="#" (click)="showPrivacy($event)">Privacy Policy</a> *</label>
+        </div>
+        
+        <div class="checkbox-box">
+          <input type="checkbox" [(ngModel)]="userData.newsletter" name="newsletter" />
+          <label>Subscribe to our newsletter for updates and offers</label>
+        </div>
+      </div>
+      
+      <div class="form-actions">
+        <button type="button" class="btn secondary" (click)="goBack()">Back to Login</button>
+        <button type="submit" class="btn primary" [disabled]="isSubmitting">
+          {{ isSubmitting ? 'Creating Account...' : 'Create Account' }}
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

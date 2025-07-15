@@ -1,0 +1,16 @@
+{
+  "name": "inventory-backend-example",
+  "version": "1.0.0",
+  "description": "Backend example for Inventory Management System",
+  "main": "server.js",
+  "scripts": {
+    "start": "json-server --watch db.json --port 3000",
+    "dev": "json-server --watch db.json --port 3000 --host 0.0.0.0"
+  },
+  "dependencies": {
+    "json-server": "^0.17.4"
+  },
+  "keywords": ["json-server", "backend", "api", "inventory"],
+  "author": "Inventory System",
+  "license": "MIT"
+} 

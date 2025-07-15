@@ -1,0 +1,256 @@
+.navbar {
+  width: 100%;
+  background: #7474e9;
+  color: white;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+  position: relative;
+  z-index: 100;
+}
+
+.nav-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 8px 24px;
+}
+
+.nav-logo a {
+  font-size: 2rem;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  color: #ffe082;
+  text-decoration: none;
+  font-weight: bold;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: opacity 0.2s, transform 0.2s;
+}
+
+.nav-logo a:hover {
+  opacity: 0.85;
+  transform: scale(1.04);
+}
+
+.nav-menu {
+  display: flex;
+  gap: 32px;
+}
+
+.nav-menu a {
+  color: white;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav-menu a.active,
+.nav-menu a:hover {
+  background: rgba(255,255,255,0.18);
+  color: #ffe082;
+}
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.nav-icon {
+  font-size: 1.5rem;
+  color: white;
+  text-decoration: none;
+  padding: 6px 10px;
+  border-radius: 50%;
+  background: transparent;
+  transition: background 0.2s, color 0.2s, transform 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.nav-icon:hover {
+  background: rgba(255,255,255,0.18);
+  color: #ffe082;
+  transform: scale(1.12);
+}
+
+.nav-search {
+  padding: 7px 14px;
+  border-radius: 20px;
+  border: none;
+  font-size: 1rem;
+  margin-right: 10px;
+  background: #f5f5fa;
+  color: #333;
+  outline: none;
+  transition: box-shadow 0.2s, background 0.2s;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  min-width: 140px;
+  max-width: 220px;
+}
+
+.nav-search:focus {
+  background: #fff;
+  box-shadow: 0 2px 8px rgba(52, 152, 219, 0.15);
+}
+
+@media (max-width: 900px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 8px 10px;
+  }
+  .nav-menu {
+    gap: 18px;
+    margin-top: 6px;
+  }
+  .nav-actions {
+    gap: 10px;
+    margin-top: 6px;
+  }
+  .nav-search {
+    min-width: 90px;
+    max-width: 140px;
+    margin-right: 6px;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .nav-container {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 6px 2vw;
+  }
+  .nav-menu {
+    flex-wrap: wrap;
+    gap: 10px;
+    font-size: 1rem;
+  }
+  .nav-logo a {
+    font-size: 1.3rem;
+  }
+  .nav-actions {
+    gap: 6px;
+  }
+}
+
+
+.right-section {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  font-size: 20px; /* icon + text size */
+  padding: 8px 0;   /* vertical padding */
+}
+
+.right-section input {
+  padding: 10px 15px;
+  font-size: 16px;
+  height: 22px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.right-section button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: white;
+  color: #7474e9;
+  border: 2px solid #7474e9;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.right-section button:hover {
+  background-color: #7474e9;
+  color: white;
+}
+
+.icon {
+  font-size: 22px;
+  cursor: pointer;
+  position: relative;
+  transition: 0.3s ease;
+  padding: 5px;
+  border-radius: 5px;
+  user-select: none;
+  pointer-events: auto;
+  z-index: 10;
+  color: white;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.icon:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+  color: white;
+  text-decoration: none;
+}
+
+.icon:active {
+  transform: scale(0.95);
+}
+
+.badge {
+  background-color: red;
+  border-radius: 50%;
+  padding: 2px 6px;
+  font-size: 12px;
+  color: white;
+  position: absolute;
+  top: -8px;
+  right: -10px;
+  pointer-events: none;
+}
+
+
+
+
+.hero {
+  text-align: center;
+  padding: 60px;
+  background-color: #f4f4f4;
+}
+
+.hero h1 {
+  font-size: 48px;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 18px;
+  color: #333;
+}
+
+.hero button {
+  margin-top: 20px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #1e1e2f;
+  color: white;
+  border: none;
+  border-radius: 4px;
+}
+
+.about {
+  padding: 40px;
+  background: #fff;
+  text-align: center;
+}
+
+footer {
+  padding: 5px;
+  background-color: #1e1e2f;
+  color: white;
+  text-align: center;
+}

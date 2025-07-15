@@ -1,0 +1,261 @@
+.register-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.register-box {
+  max-width: 800px;
+  width: 100%;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  margin: 20px 0;
+}
+
+.register-box h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 10px;
+  font-size: 2.5rem;
+  font-weight: 700;
+}
+
+.register-box > p {
+  text-align: center;
+  color: #666;
+  margin-bottom: 40px;
+  font-size: 1.1rem;
+}
+
+.form-section {
+  margin-bottom: 40px;
+  padding: 30px;
+  background: #f8f9fa;
+  border-radius: 15px;
+  border-left: 4px solid #7474e9;
+}
+
+.form-section h3 {
+  color: #333;
+  margin-bottom: 25px;
+  font-size: 1.4rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+}
+
+.form-section h3::before {
+  content: '';
+  width: 20px;
+  height: 20px;
+  background: #7474e9;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.input-box {
+  margin-bottom: 20px;
+}
+
+.input-box label {
+  display: block;
+  margin-bottom: 8px;
+  color: #555;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+
+.input-box input,
+.input-box select {
+  width: 100%;
+  padding: 12px 15px;
+  border: 2px solid #e1e5e9;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.3s ease;
+  box-sizing: border-box;
+  background: white;
+}
+
+.input-box input:focus,
+.input-box select:focus {
+  outline: none;
+  border-color: #7474e9;
+  box-shadow: 0 0 0 3px rgba(116, 116, 233, 0.1);
+}
+
+.password-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-container input {
+  padding-right: 50px;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  padding: 5px;
+  border-radius: 4px;
+  transition: background-color 0.3s ease;
+  color: #666;
+}
+
+.password-toggle:hover {
+  background-color: rgba(116, 116, 233, 0.1);
+  color: #7474e9;
+}
+
+.password-toggle:focus {
+  outline: none;
+  background-color: rgba(116, 116, 233, 0.2);
+}
+
+.input-box small {
+  display: block;
+  margin-top: 5px;
+  color: #666;
+  font-size: 0.8rem;
+}
+
+.checkbox-box {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 15px;
+  gap: 10px;
+}
+
+.checkbox-box input[type="checkbox"] {
+  width: auto;
+  margin-top: 3px;
+}
+
+.checkbox-box label {
+  margin: 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  color: #555;
+}
+
+.checkbox-box a {
+  color: #7474e9;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.checkbox-box a:hover {
+  text-decoration: underline;
+}
+
+.form-actions {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+  padding-top: 30px;
+  border-top: 1px solid #e1e5e9;
+}
+
+.btn {
+  padding: 15px 30px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 150px;
+}
+
+.btn.primary {
+  background-color: #7474e9;
+  color: white;
+}
+
+.btn.primary:hover:not(:disabled) {
+  background-color: #5a5ad1;
+  transform: translateY(-2px);
+}
+
+.btn.primary:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+  opacity: 0.7;
+  transform: none;
+}
+
+.btn.secondary {
+  background-color: transparent;
+  color: #7474e9;
+  border: 2px solid #7474e9;
+}
+
+.btn.secondary:hover {
+  background-color: #7474e9;
+  color: white;
+  transform: translateY(-2px);
+}
+
+.btn:active:not(:disabled) {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .register-box {
+    padding: 20px;
+    margin: 10px;
+  }
+  
+  .form-section {
+    padding: 20px;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+  
+  .form-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .btn {
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+@media (max-width: 480px) {
+  .register-container {
+    padding: 10px;
+  }
+  
+  .register-box h2 {
+    font-size: 2rem;
+  }
+  
+  .form-section {
+    padding: 15px;
+  }
+}

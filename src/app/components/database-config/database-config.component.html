@@ -1,0 +1,129 @@
+<div class="database-config-container">
+  <div class="config-box">
+    <h2>🗄️ Database Configuration</h2>
+    <p>Choose where to store your user registration data</p>
+    
+    <div class="database-options">
+      <div class="option-card" [class.selected]="selectedDatabase === 'localStorage'">
+        <div class="option-header">
+          <h3>📱 Local Storage</h3>
+          <input type="radio" name="database" value="localStorage" [(ngModel)]="selectedDatabase">
+        </div>
+        <p>Store data in browser's local storage. Data persists between sessions but is limited to this device.</p>
+        <ul>
+          <li>✅ No setup required</li>
+          <li>✅ Works offline</li>
+          <li>❌ Limited storage space</li>
+          <li>❌ Data not shared across devices</li>
+        </ul>
+      </div>
+
+      <div class="option-card" [class.selected]="selectedDatabase === 'jsonServer'">
+        <div class="option-header">
+          <h3>🔄 JSON Server</h3>
+          <input type="radio" name="database" value="jsonServer" [(ngModel)]="selectedDatabase">
+        </div>
+        <p>Use JSON Server for a simple REST API. Requires running a local server.</p>
+        <ul>
+          <li>✅ Simple setup</li>
+          <li>✅ RESTful API</li>
+          <li>❌ Requires local server</li>
+          <li>❌ Not suitable for production</li>
+        </ul>
+        <div class="server-config" *ngIf="selectedDatabase === 'jsonServer'">
+          <label>Server URL:</label>
+          <input type="text" [(ngModel)]="jsonServerUrl" placeholder="http://localhost:3000">
+        </div>
+      </div>
+
+      <div class="option-card" [class.selected]="selectedDatabase === 'firebase'">
+        <div class="option-header">
+          <h3>🔥 Firebase</h3>
+          <input type="radio" name="database" value="firebase" [(ngModel)]="selectedDatabase">
+        </div>
+        <p>Use Firebase Realtime Database for cloud storage. Requires Firebase project setup.</p>
+        <ul>
+          <li>✅ Cloud storage</li>
+          <li>✅ Real-time updates</li>
+          <li>❌ Requires Firebase setup</li>
+          <li>❌ Internet connection required</li>
+        </ul>
+        <div class="firebase-config" *ngIf="selectedDatabase === 'firebase'">
+          <label>Project URL:</label>
+          <input type="text" [(ngModel)]="firebaseUrl" placeholder="https://your-project.firebaseio.com">
+        </div>
+      </div>
+
+      <div class="option-card" [class.selected]="selectedDatabase === 'mongodb'">
+        <div class="option-header">
+          <h3>🍃 MongoDB</h3>
+          <input type="radio" name="database" value="mongodb" [(ngModel)]="selectedDatabase">
+        </div>
+        <p>Use MongoDB database. Requires a running MongoDB server and backend API.</p>
+        <ul>
+          <li>✅ Scalable NoSQL database</li>
+          <li>✅ Flexible schema</li>
+          <li>❌ Requires backend setup</li>
+          <li>❌ Complex configuration</li>
+        </ul>
+        <div class="mongodb-config" *ngIf="selectedDatabase === 'mongodb'">
+          <label>API URL:</label>
+          <input type="text" [(ngModel)]="mongodbUrl" placeholder="http://localhost:5000/api">
+        </div>
+      </div>
+
+      <div class="option-card" [class.selected]="selectedDatabase === 'mysql'">
+        <div class="option-header">
+          <h3>🐬 MySQL</h3>
+          <input type="radio" name="database" value="mysql" [(ngModel)]="selectedDatabase">
+        </div>
+        <p>Use MySQL database. Requires a running MySQL server and backend API.</p>
+        <ul>
+          <li>✅ Reliable SQL database</li>
+          <li>✅ ACID compliance</li>
+          <li>❌ Requires backend setup</li>
+          <li>❌ Complex configuration</li>
+        </ul>
+        <div class="mysql-config" *ngIf="selectedDatabase === 'mysql'">
+          <label>API URL:</label>
+          <input type="text" [(ngModel)]="mysqlUrl" placeholder="http://localhost:8000/api">
+        </div>
+      </div>
+
+      <div class="option-card" [class.selected]="selectedDatabase === 'postgresql'">
+        <div class="option-header">
+          <h3>🐘 PostgreSQL</h3>
+          <input type="radio" name="database" value="postgresql" [(ngModel)]="selectedDatabase">
+        </div>
+        <p>Use PostgreSQL database. Requires a running PostgreSQL server and backend API.</p>
+        <ul>
+          <li>✅ Advanced SQL database</li>
+          <li>✅ Rich features</li>
+          <li>❌ Requires backend setup</li>
+          <li>❌ Complex configuration</li>
+        </ul>
+        <div class="postgresql-config" *ngIf="selectedDatabase === 'postgresql'">
+          <label>API URL:</label>
+          <input type="text" [(ngModel)]="postgresqlUrl" placeholder="http://localhost:8000/api">
+        </div>
+      </div>
+    </div>
+
+    <div class="config-actions">
+      <button class="btn secondary" (click)="testConnection()">Test Connection</button>
+      <button class="btn primary" (click)="saveConfiguration()">Save Configuration</button>
+    </div>
+
+    <div class="connection-status" *ngIf="connectionStatus !== null">
+      <div class="status-message" [class.success]="connectionStatus" [class.error]="!connectionStatus">
+        {{ connectionStatus ? '✅ Connection successful!' : '❌ Connection failed!' }}
+      </div>
+    </div>
+
+    <div class="current-config" *ngIf="currentConfig">
+      <h4>Current Configuration:</h4>
+      <p><strong>Database Type:</strong> {{ currentConfig.type }}</p>
+      <p *ngIf="currentConfig.url"><strong>URL:</strong> {{ currentConfig.url }}</p>
+    </div>
+  </div>
+</div>
