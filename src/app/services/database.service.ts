@@ -157,8 +157,7 @@ export class DatabaseService {
   private registerUserLocalStorage(userData: UserData): Observable<boolean> {
     try {
       const users = this.getUsersFromLocalStorage();
-      const newUser = { ...userData, id: this.generateUserId(), createdAt: new Date(), isActive: true };
-      users.push(newUser);
+      users.push(userData);
       localStorage.setItem('inventory_users', JSON.stringify(users));
       return of(true);
     } catch (error) {

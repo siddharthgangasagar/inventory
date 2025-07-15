@@ -92,11 +92,16 @@ export class RegisterComponent {
 
     try {
       // Register user using the service
-      const success = await this.userService.registerUser(this.userData);
+      const userDataWithRole = {
+        ...this.userData,
+        role: 'user' as const // Set default role as user
+      };
+      
+      const success = await this.userService.registerUser(userDataWithRole);
       
       if (success) {
         alert('Account created successfully! Welcome to our platform.');
-        this.router.navigate(['/login']);
+        this.router.navigate(['/user-dashboard']);
       } else {
         alert('Failed to create account. Please try again.');
       }
