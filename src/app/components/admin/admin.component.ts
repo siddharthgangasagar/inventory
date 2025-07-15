@@ -33,10 +33,10 @@ export class AdminComponent implements OnInit {
   loadUsers() {
     // Get users from database
     this.userService.getAllUsers().subscribe({
-      next: (users) => {
+      next: (users: UserData[]) => {
         this.users = users;
       },
-      error: (error) => {
+      error: (error: any) => {
         console.error('Error loading users:', error);
         this.users = [];
       }

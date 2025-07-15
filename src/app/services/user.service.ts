@@ -72,19 +72,6 @@ export class UserService {
   }
 
   // Get all registered users from database
-  getAllUsers(): UserData[] {
-    let users: UserData[] = [];
-    this.databaseService.getAllUsers().subscribe({
-      next: (data) => {
-        users = data;
-      },
-      error: (error) => {
-        console.error('Error getting users:', error);
-        users = [];
-      }
-    });
-    return users;
-  }
 
   // Get user by email from database
   getUserByEmail(email: string): UserData | undefined {
