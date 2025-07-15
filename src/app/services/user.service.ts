@@ -39,6 +39,10 @@ export class UserService {
   }
 
   // Register new user using database service
+  getAllUsers() {
+    return this.databaseService.getAllUsers();
+  }
+
   registerUser(userData: UserData): Promise<boolean> {
     return new Promise((resolve) => {
       // Set default role as 'user' if not specified

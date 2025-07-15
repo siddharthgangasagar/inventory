@@ -47,9 +47,23 @@ export class LoginComponent {
           firstName: 'Admin',
           lastName: 'User',
           email: 'admin@example.com',
+          phone: '',
+          dateOfBirth: '',
+          password: 'admin123',
+          confirmPassword: 'admin123',
+          companyName: '',
+          jobTitle: '',
+          businessType: '',
+          address: '',
+          city: '',
+          state: '',
+          zipCode: '',
+          country: '',
           role: 'admin' as const,
           createdAt: new Date(),
-          isActive: true
+          isActive: true,
+          agreeToTerms: true,
+          newsletter: false
         };
         
         // Set as current user

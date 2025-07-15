@@ -32,7 +32,7 @@ export class AdminComponent implements OnInit {
 
   loadUsers() {
     // Get users from database
-    this.userService.databaseService.getAllUsers().subscribe({
+    this.userService.getAllUsers().subscribe({
       next: (users) => {
         this.users = users;
       },
