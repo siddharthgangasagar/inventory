@@ -61,6 +61,7 @@ export class AdminComponent implements OnInit {
 
   logout() {
     this.userService.logoutUser();
+    alert('You have been logged out successfully.');
     this.router.navigate(['/login']);
   }
 

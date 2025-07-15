@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule, Router } from '@angular/router';
 import { UserService, UserData } from '../../services/user.service';
 
 @Component({
@@ -26,6 +26,10 @@ export class UserDashboardComponent implements OnInit {
   ];
 
   constructor(private userService: UserService) {}
+  constructor(
+    private userService: UserService,
+    private router: Router
+  ) {}
 
   ngOnInit() {
     this.currentUser = this.userService.getCurrentUser();
@@ -33,7 +37,8 @@ export class UserDashboardComponent implements OnInit {
 
   logout() {
     this.userService.logoutUser();
-    window.location.href = '/login';
+    alert('You have been logged out successfully.');
+    this.router.navigate(['/login']);
   }
 
   updateProfile() {

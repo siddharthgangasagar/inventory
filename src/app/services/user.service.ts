@@ -157,6 +157,7 @@ export class UserService {
   logoutUser(): void {
     this.currentUserSubject.next(null);
     localStorage.removeItem('current_user');
+    console.log('User logged out successfully');
   }
 
   // Get current user
